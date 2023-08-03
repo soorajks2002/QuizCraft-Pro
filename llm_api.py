@@ -12,13 +12,13 @@ def format_response(input_str):
     for question in questions:
         q_data = question.split("\n")
         q = q_data[0]
-        answers = q_data[1:-1]
-        correct_answer = q_data[-1].split(": ")[1]
+        options = q_data[1:-1]
+        answer = q_data[-1].split(": ")[1]
         
         question_dict = {
             "question": q,
-            "answers": answers,
-            "Correct answer": correct_answer
+            "options": options,
+            "answer": answer
         }
         
         result.append(question_dict)
@@ -26,7 +26,7 @@ def format_response(input_str):
     return result
 
 
-def create_mcq(no_ques, content):
+def generate_mcq(no_ques, content):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -40,4 +40,4 @@ def create_mcq(no_ques, content):
     print("\n\n\n")
     return format_response(response["choices"][0]["message"]["content"])
 
-# print(create_mcq(3, '''Khaled Hosseini, born on March 4, 1965, is an acclaimed Afghan-American novelist, physician, and humanitarian. He rose to international literary fame with his debut novel, "The Kite Runner," published in 2003. The book explores themes of friendship, betrayal, redemption, and the impact of war on individuals and society. Hosseini's writing style is known for its poignant storytelling, vivid characters, and emotional depth, which have resonated with readers worldwide. Beyond his literary accomplishments, Hosseini is also dedicated to charitable work and serves as a Goodwill Envoy for the United Nations High Commissioner for Refugees. His subsequent novels, including "A Thousand Splendid Suns" and "And the Mountains Echoed," further solidified his reputation as a masterful storyteller and a voice for the voiceless, shedding light on the complexities of Afghanistan's history and culture. Through his writing and philanthropy, Khaled Hosseini continues to leave a lasting impact on both the literary world and the lives of those in need.'''))
+# print(generate_mcq(3, '''Khaled Hosseini, born on March 4, 1965, is an acclaimed Afghan-American novelist, physician, and humanitarian. He rose to international literary fame with his debut novel, "The Kite Runner," published in 2003. The book explores themes of friendship, betrayal, redemption, and the impact of war on individuals and society. Hosseini's writing style is known for its poignant storytelling, vivid characters, and emotional depth, which have resonated with readers worldwide. Beyond his literary accomplishments, Hosseini is also dedicated to charitable work and serves as a Goodwill Envoy for the United Nations High Commissioner for Refugees. His subsequent novels, including "A Thousand Splendid Suns" and "And the Mountains Echoed," further solidified his reputation as a masterful storyteller and a voice for the voiceless, shedding light on the complexities of Afghanistan's history and culture. Through his writing and philanthropy, Khaled Hosseini continues to leave a lasting impact on both the literary world and the lives of those in need.'''))
