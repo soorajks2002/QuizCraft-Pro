@@ -1,7 +1,8 @@
 import streamlit as st
 from llm_api import generate_mcq
 
-st.title("Q-Easy")
+st.set_page_config(page_title="QuizCraft", page_icon="🎓")
+st.title("QuizCraft Pro 📝")
 
 c1, c2 = st.columns(2)
 number_of_question = c1.slider("Pick number of question to be created", 1, 5)
