@@ -1,7 +1,7 @@
 import openai
-from api_key import chat_gpt_api_key
+from api_key import open_ai_api_key
 
-openai.api_key = chat_gpt_api_key
+openai.api_key = open_ai_api_key
 
 prompt = '''create {no_of_ques} short {difficulty_level} mcq using the following and give the correct answer of each mcq\n\n{content}'''
 
